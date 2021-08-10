@@ -20,7 +20,7 @@ class FileStorage:
         """ public instance method to delete obj from __objects if it’s inside
             VER QUE SUCEDE CUANDO CASO DE OBJETO NO EXISTENTE
         """
-        if (obj == None):
+        if (obj is None):
             return
         else:
             obj_key_to_delete = obj.to_dict()['__class__'] + '.' + obj.id
@@ -61,5 +61,3 @@ class FileStorage:
                         self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
-
-    

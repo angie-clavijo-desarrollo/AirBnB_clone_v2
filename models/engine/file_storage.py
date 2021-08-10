@@ -27,6 +27,7 @@ class FileStorage:
             for key in self.__objects.keys():
                 if key == obj_key_to_delete:
                     self.__objects.pop(key)
+                    break
 
     def save(self):
         """Saves storage dictionary to file"""

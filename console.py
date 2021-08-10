@@ -113,21 +113,21 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-def exist_kwags(value):
-    count = 0
-    if value[0] != '"':
-        return 0
-    if value[-1] != '"':
-        return 0
-    for iterator in  value:
-        if iterator == ' ':
+    def exist_kwags(value):
+        count = 0
+        if value[0] != '"':
             return 0
-    #    elif iterator == '"':
-    #        if value[count-1] != '\\':
-    #            return 0
-        count += 1
-    else:
-        return 1
+        if value[-1] != '"':
+            return 0
+        for iterator in  value:
+            if iterator == ' ':
+                return 0
+        #    elif iterator == '"':
+        #        if value[count-1] != '\\':
+        #            return 0
+            count += 1
+        else:
+            return 1
 
     def do_create(self, args, **kwargs):
         """ Create an object of any class"""
@@ -139,7 +139,8 @@ def exist_kwags(value):
             return
         elif not kwargs:
             print ("** argument missing **")
-        new_instance = HBNBCommand.classes[args]()
+
+        new_instance = HBNBCommand.classes[args](**kwargs)
         storage.save()
         print(new_instance.id)
         storage.save()

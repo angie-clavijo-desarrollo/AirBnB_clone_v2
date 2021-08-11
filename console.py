@@ -121,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
             return 0
         if value[-1] != '"':
             return 0
-        for iterator in  value:
+        for iterator in value:
             if iterator == ' ':
                 return 0
         #    elif iterator == '"':
@@ -152,7 +152,6 @@ class HBNBCommand(cmd.Cmd):
                 print(" class name missing ")
             except NameError:
                 print(" class doesn't exist ")
-
 
     #        new_instance = HBNBCommand.classes[args](**kwargs)
             storage.save()

@@ -7,7 +7,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import String
-from test_save_reload_user import obj
 
 Base = declarative_base()
 
@@ -48,18 +47,14 @@ class BaseModel:
 
     def to_dict(self):
         """Convert instance into dict format"""
-        dictionary = {}
-        dictionary.update(self.__dict__)
-        dictionary.update({'__class__':
-                          (str(type(self)).split('.')[-1]).split('\'')[0]})
-        dictionary['created_at'] = self.created_at.isoformat()
-        dictionary['updated_at'] = self.updated_at.isoformat()
-        obj_key_to_delete = obj.to_dict()['__class__'] + '.' + obj.id
-        if '_sa_instance_state' in dictionary.keys:
-            dictionary.pop('_sa_instance_state')
-        return dictionary
+
+        my_dictionary = self.__dict__.copy()
+        my_dictionary["__class__"] = str(type(self).__name__)
+        my_dictionary["created_at"] = self.created_at.isoformat()
+        my_dictionary["updated_at"] = self.updated_at.isoformat()
+        my_dictionary.pop("_sa_instance_state", None)
+        return my_dictionary
 
     def delete(self):
         """ to delete the current instance from the storage"""
-        from models import storage
-        storage.delete(self)
+        models.storage.delete(self)

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """State Module for HBNB project """
 from sqlalchemy.sql.schema import Column
- from models.base_model import Base
+from models.base_model import Base
 from models.base_model import BaseModel
 from sqlalchemy import Column, Integer, String
 from sqlalchemy import create_engine

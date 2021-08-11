@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """ Console Module """
+from os import getenv
+from shlex import split
 import cmd
 import sys
 from models.base_model import BaseModel
@@ -10,7 +12,6 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
-import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -114,6 +115,22 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
+    def exist_kwags(value):
+        count = 0
+        if value[0] != '"':
+            return 0
+        if value[-1] != '"':
+            return 0
+        for iterator in  value:
+            if iterator == ' ':
+                return 0
+        #    elif iterator == '"':
+        #        if value[count-1] != '\\':
+        #            return 0
+            count += 1
+        else:
+            return 1
+
     def do_create(self, args):
             """ Create an object of any class"""
             try:
@@ -136,10 +153,11 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print(" class doesn't exist ")
 
+
     #        new_instance = HBNBCommand.classes[args](**kwargs)
-    #        storage.save()
+            storage.save()
     #        print(new_instance.id)
-    #        storage.save()
+            storage.save()
 
     def help_create(self):
         """ Help information for the create method """

@@ -12,13 +12,13 @@ from os import getenv
 class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
-
     name = Column(String(128), nullable=False)
     cities = relationship('City', backref='state', cascade="all, delete")
 
     if os.getenv('HBNB_TYPE_STORAGE') != 'db':
         @property
         def cities(self):
+            """ Function that verify od list of cities"""
             city_dict = []
             for _id, city in models.storage.all(City).items():
                 if self.id == city.state_id:

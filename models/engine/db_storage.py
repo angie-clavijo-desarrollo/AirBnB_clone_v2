@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""State Module for HBNB project """
+""" State Module for HBNB project """
 from models.base_model import BaseModel, Base
 from models.user import User
 from models.state import State
@@ -13,23 +13,22 @@ import os
 
 
 class DBStorage:
-    """Class DBStorage """
-
-if __name__ == "__main__":
+    """Engine for MySQL"""
 
     __engine = None
     __session = None
 
     def __init__(self):
+        """Init Engine"""
 
         usrnm = os.getenv('HBNB_MYSQL_USER')
         passwd = os.getenv('HBNB_MYSQL_PWD')
         host = os.getenv('HBNB_MYSQL_HOST')
         db = os.getenv('HBNB_MYSQL_DB')
 
-        self.__engine = create_engine('mysql+mysqldb://HBNB_MYSQL_USER:\
-                    HBNB_MYSQL_PWD@HBNB_MYSQL_HOST/\
-                    HBNB_MYSQL_DB', ppool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}:3306/{}'
+                                      .format(usrnm, passwd, host, db),
+                                      pool_pre_ping=True)
 
         if os.getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)

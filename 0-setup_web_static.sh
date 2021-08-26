@@ -2,6 +2,10 @@
 # configurate the servers
 sudo apt-get update
 sudo apt-get install nginx -y
+sudo ufw enable
+sudo ufw app list
+sudo ufw status
+sudo systemctl status nginx
 mkdir -p /data/web_static/shared /data/web_static/releases/test
 echo "this test for nginx" | sudo tee /data/web_static/releases/test/index.html
 rm -rf /data/web_static/current

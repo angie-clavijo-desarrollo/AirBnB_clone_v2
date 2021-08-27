@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Fabric for create a
     local pack with web static """
-from fabric.api import *
+from fabric.api import local
 from os import path
 from datetime import datetime
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""  That distributes an archive to your web servers"""
+""" That creates and distributes an archive to your web servers, using the function deploy"""
 from fabric.api import local, put, run, env
 from datetime import datetime
 
@@ -55,3 +55,11 @@ def do_deploy(archive_path):
 
     except Exception as exception:
         return False
+
+
+def deploy():
+    """ Function deploy"""
+    archive_path = do_pack()
+    if archive_path is None:
+        return False
+    return do_deploy(archive_path)

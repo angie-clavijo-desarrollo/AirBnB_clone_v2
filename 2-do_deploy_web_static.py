@@ -3,7 +3,7 @@
 from fabric.api import local, put, run, env
 from datetime import datetime
 
-env.hosts = ['ubuntu@54.242.180.91','ubuntu@35.229.117.230']
+env.hosts = ['ubuntu@54.242.180.91', 'ubuntu@35.229.117.230']
 
 
 def do_pack():
@@ -15,7 +15,7 @@ def do_pack():
         local("tar -czvf " + format_file + " web_static")
         return(format_file)
     except Exception as exception:
-        return(None)
+        return None
 
 
 def do_deploy(archive_path):
@@ -25,7 +25,7 @@ def do_deploy(archive_path):
     dir_server = "/tmp/{}".format(request_tgz)
 
     if not archive_path:
-        return(False)
+        return False
 
     try:
         # upload tgz at servers
@@ -53,5 +53,13 @@ def do_deploy(archive_path):
         run("ln -s {} /data/web_static/current".format(resource_path))
         return(True)
 
-    except as e:
-        return(False)
+    except Exception as exception:
+        return False
+
+
+def deploy():
+    """ comment"""
+    archive_path = do_pack()
+    if archive_path is None:
+        return False
+    return do_deploy(archive_path)

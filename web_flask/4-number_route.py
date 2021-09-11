@@ -30,6 +30,8 @@ def path_python(text="is cool"):
 def path_number(n):
     if n is int:
         return "{}  is a number".format(n)
+    else:
+        return
 
 
 if __name__ == '__main__':

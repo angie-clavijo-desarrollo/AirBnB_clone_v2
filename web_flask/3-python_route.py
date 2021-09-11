@@ -21,7 +21,7 @@ def path_c(text="value"):
 
 
 @app.route('/python/(<text>)')
-def path_python(text="value"):
+def path_python(text="is cool"):
     return "Python {}".format(text.replace("_", " "))
 
 

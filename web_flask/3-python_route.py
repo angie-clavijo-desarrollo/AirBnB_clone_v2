@@ -19,6 +19,7 @@ def path_hbnbn():
 def path_c(text="value"):
     return "C {}".format(text.replace("_", " "))
 
+
 @app.route('/python')
 @app.route('/python/(<text>)')
 def path_python(text="is cool"):

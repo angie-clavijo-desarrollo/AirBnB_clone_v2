@@ -27,7 +27,7 @@ def path_python(text="is cool"):
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def path_number(n="value"):
+def path_number(n):
     if n is int:
         return "{}  is a number".format(n)
 

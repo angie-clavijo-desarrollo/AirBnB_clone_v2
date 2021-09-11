@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Flask hello world and other path and specify port and host"""
+""" Flask hello world and other path and specify port and host
+    And render and file html, one path specify"""
 from flask import Flask, render_template
 
 app = Flask(__name__)

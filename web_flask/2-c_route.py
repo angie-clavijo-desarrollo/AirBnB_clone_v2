@@ -17,10 +17,7 @@ def path_hbnbn():
 
 @app.route('/c/<text:text>')
 def path_hbnbn():
-    if '_' replace ' ':
-        return "C"
-    else:
-        return
+    return "C {}".format(text.replace("_", " "))
 
 
 if __name__ == '__main__':

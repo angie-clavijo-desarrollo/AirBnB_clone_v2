@@ -15,8 +15,8 @@ def path_hbnbn():
     return "HBNB"
 
 
-@app.route('/c/<text:text>')
-def path_hbnbn():
+@app.route('/c/<text>')
+def path_c(text="value"):
     return "C {}".format(text.replace("_", " "))
 
 

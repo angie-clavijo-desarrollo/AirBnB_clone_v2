@@ -32,4 +32,4 @@ def path_number(n):
 
 
 if __name__ == '__main__':
-    app.run(port=5000, host='0.0.0.0')
+    app.run(debug=True)

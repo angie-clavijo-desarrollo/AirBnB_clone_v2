@@ -26,9 +26,12 @@ def path_python(text="is cool"):
     return "Python {}".format(text.replace("_", " "))
 
 
-@app.route('/number/<int:n>', strict_slashes=False)
-def path_number(n="value"):
-    return "{}  is a number".format(n)
+@app.route('/number/<int:n>')
+def path_number(n):
+    if n is int:
+        return "{}  is a number".format(str(n))
+    else:
+        return
 
 
 if __name__ == '__main__':

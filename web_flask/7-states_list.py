@@ -1,16 +1,22 @@
 #!/usr/bin/python3
-""" Flask hello world and other path and specify port and host
-    And render and file html, one path specify"""
+""" Flask one path and specify port and host
+    And render and file html, to """
 from flask import Flask, render_template
+from models import storage
+from models.state import State
 
 app = Flask(__name__)
 
 
-app.route('/states_list', strict_slashes=False)
+@app.route('/states_list', strict_slashes=False)
+def path_states():
+    state = storage.all(State).values()
+    return render_template('7-states_list.html', state=state)
 
 
-def path_states(State="States"):
-    return render_template('7-states_list.html', State=State)
+@app.teardown_appcontext()
+def remove_session(self):
+    storage.close()
 
 
 if __name__ == '__main__':

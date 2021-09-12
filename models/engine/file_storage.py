@@ -9,6 +9,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class FileStorage:
     """This class manages storage of hbnb models in JSON format"""
     __file_path = 'file.json'
@@ -54,7 +55,7 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding="UTF-8") as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+                    self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
 
@@ -68,4 +69,3 @@ class FileStorage:
     def close(self):
         """ method to close file storage"""
         self.reload()
-

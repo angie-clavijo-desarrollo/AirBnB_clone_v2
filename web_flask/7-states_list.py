@@ -10,14 +10,12 @@ app = Flask(__name__)
 
 @app.route('/states_list', strict_slashes=False)
 def path_states():
-    """ Function path states"""
     state = storage.all(State).values()
-    return render_template('7-states_list.html', state=state)
+    return render_template('7-states_list.html', states=state)
 
 
-@app.teardown_appcontext()
+@app.teardown_appcontext
 def remove_session(self):
-    """ Function remove sessions"""
     storage.close()
 
 
